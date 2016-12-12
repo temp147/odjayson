@@ -14,3 +14,11 @@ var ds = loopback.createDataSource({
     host : 'localhost',
     port: '8069'
 });
+
+
+Model = ds.createModel('test');
+
+Model.findById(1,function (err, model) {
+    if(err)throw err;
+    console.log('done');
+})
