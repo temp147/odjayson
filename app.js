@@ -16,9 +16,12 @@ var ds = loopback.createDataSource({
 });
 
 
-Model = ds.createModel('test');
+Model = ds.createModel('hr.employee');
+
+// setTimeout(console.log(ds.connector),2000);
 
 Model.findById(1,function (err, model) {
     if(err)throw err;
-    console.log('done');
+    // console.log(ds.connector);
+     console.dir(model);
 })
