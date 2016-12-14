@@ -8,20 +8,51 @@ var loopback = require('loopback');
 
 var ds = loopback.createDataSource({
     connector: require("./index"),
-    login : 'system',
+    login : 'admin',
     password : 'admin',
-    db : 'openerp',
+    db : 'song',
     host : 'localhost',
     port: '8069'
 });
 
 
-Model = ds.createModel('hr.employee');
+var Emp = ds.createModel('hr.employee',{
+    first_name: {type:String},
+    last_name:  {type:String},
+    title:{type:String}
+});
 
-// setTimeout(console.log(ds.connector),2000);
 
-Model.findById(1,function (err, model) {
-    if(err)throw err;
+Emp.find({where:{id:1}},function (err, emp) {
+    if(err) throw err;
     // console.log(ds.connector);
-     console.dir(model);
-})
+     console.dir(emp);
+});
+
+Emp.create({
+    first_name:'test2',
+    last_name:'last',
+    title:'sales'
+    },function (err,response) {
+    if(err) throw err;
+    console.dir(response);
+});
+
+Emp.destroyById(1
+,function (err,response) {
+    if(err) throw err;
+    console.dir(response);
+});
+
+Emp.destroyAll({where:{id:1}}
+    ,function (err,response) {
+        if(err) throw err;
+        console.dir(response);
+    });
+
+Emp.updateAll(
+    {id:2},function (err, response) {
+        if(err) throw err;
+        console.dir(response);
+    }
+)
