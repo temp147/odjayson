@@ -16,43 +16,55 @@ var ds = loopback.createDataSource({
 });
 
 
-var Emp = ds.createModel('hr.employee',{
+var Emp = ds.createModel('crm.contact',{
     first_name: {type:String},
     last_name:  {type:String},
-    title:{type:String}
+    title:  {type:String}
 });
 
 
-Emp.find({where:{id:1}},function (err, emp) {
+Emp.find(
+    {where:{
+        "or":[
+            {"id":"1"},
+            {"last_name":{"neq" :"test2"}},
+            {"or":[{"first_name":"last"},{"title":"IT1"}]}
+        ]
+    },
+    fields: {first_name:true,last_name:true,title:true},
+    limit:  1,
+    order:  'last_name DESC',//['last_name DESC','first_name ASC']
+    skip:   0}
+        ,function (err, emp) {
     if(err) throw err;
     // console.log(ds.connector);
      console.dir(emp);
 });
-
-Emp.create({
-    first_name:'test2',
-    last_name:'last',
-    title:'sales'
-    },function (err,response) {
-    if(err) throw err;
-    console.dir(response);
-});
-
-Emp.destroyById(1
-,function (err,response) {
-    if(err) throw err;
-    console.dir(response);
-});
-
-Emp.destroyAll({where:{id:1}}
-    ,function (err,response) {
-        if(err) throw err;
-        console.dir(response);
-    });
-
-Emp.updateAll(
-    {id:2},function (err, response) {
-        if(err) throw err;
-        console.dir(response);
-    }
-)
+    //
+    // Emp.create({
+    //     first_name:'test2',
+    //     last_name:'last',
+    //     title:'sales'
+    //     },function (err,response) {
+    //     if(err) throw err;
+    //     console.dir(response);
+    // });
+    //
+    // Emp.destroyById(1
+    // ,function (err,response) {
+    //     if(err) throw err;
+    //     console.dir(response);
+    // });
+    //
+    // Emp.destroyAll({where:{id:1}}
+    //     ,function (err,response) {
+    //         if(err) throw err;
+    //         console.dir(response);
+    //     });
+    //
+    // Emp.updateAll(
+    //     {id:2},function (err, response) {
+    //         if(err) throw err;
+    //         console.dir(response);
+    //     }
+    // )
