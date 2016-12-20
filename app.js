@@ -24,17 +24,25 @@ var Emp = ds.createModel('crm.contact',{
 
 
 Emp.find(
-    {where:{
-        "or":[
-            {"id":"1"},
-            {"last_name":{"neq" :"test2"}},
-            {"or":[{"first_name":"last"},{"title":"IT1"}]}
-        ]
-    },
-    fields: {first_name:true,last_name:true,title:true},
-    limit:  1,
-    order:  'last_name DESC',//['last_name DESC','first_name ASC']
-    skip:   0}
+    {
+        where:{
+            "and":[
+              {"id":"1"},
+              {"last_name":{"neq" :"test2"}},
+               {"or" :[{"first_name":"last"},{"title":"IT1"}]}
+            ]
+        },
+        // where: {or :[{"id":"1"}]},
+        // where:{
+        //     "and":[
+        //         {"id":"1"},
+        //         {"last_name":"test1"}
+        //     ]
+        // },
+        fields: {first_name:true,last_name:true,title:true},
+        limit:  1,
+        order:  'last_name DESC',//['last_name DESC','first_name ASC']
+        skip:   0}
         ,function (err, emp) {
     if(err) throw err;
     // console.log(ds.connector);
