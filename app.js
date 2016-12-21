@@ -27,14 +27,17 @@ Emp.find(
     {
         where:{
             "and":[
-              {"id":"1"},
-              {"last_name":{"neq" :"test2"}},
-               {"or" :[{"first_name":"last"},{"title":"IT1"}]}
+                {"id":"1"},
+                {"last_name":{"neq" :"test2"}},
+                {"or" :[{"first_name":"last"},{"title":"IT1"}]}
             ]
         },
-        // where: {or :[{"id":"1"}]},
+        // where: {"id":"1"},
+        // where: {id:{
+        //     nin:[1,2]
+        // }},
         // where:{
-        //     "and":[
+        //     "or":[
         //         {"id":"1"},
         //         {"last_name":"test1"}
         //     ]
