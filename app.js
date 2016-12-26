@@ -52,20 +52,24 @@ var Emp = ds.createModel('crm.contact',{
 //      console.dir(emp);
 // });
 
-    // Emp.create({
-    //     first_name:'test2',
-    //     last_name:'last',
-    //     title:'sales'
-    //     },function (err,response) {
+        Emp.create({
+            first_name:'test2',
+            last_name:'last',
+            title:'sales'
+            },function (err,response) {
+            if(err) throw err;
+            console.dir(response);
+            response.updateAttribute('first_name','updated2',function (err, res) {
+                if(err) throw err;
+                console.dir(res);
+            })
+        });
+    //
+    // Emp.destroyById(2
+    // ,function (err,response) {
     //     if(err) throw err;
     //     console.dir(response);
     // });
-    //
-    Emp.destroyById(2
-    ,function (err,response) {
-        if(err) throw err;
-        console.dir(response);
-    });
 
     // Emp.destroyAll({where:{id:1}}
     //     ,function (err,response) {
@@ -73,8 +77,8 @@ var Emp = ds.createModel('crm.contact',{
     //         console.dir(response);
     //     });
     //
-    // Emp.updateAll(
-    //     {id:2},function (err, response) {
+    // Emp.updateAll({id:0},
+    //     {title:222},function (err, response) {
     //         if(err) throw err;
     //         console.dir(response);
     //     }
