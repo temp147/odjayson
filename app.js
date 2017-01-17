@@ -9,7 +9,7 @@ var loopback = require('loopback');
 var ds = loopback.createDataSource({
     connector: require("./index"),
     login : 'admin',
-    password : 'admin',
+    password : 'admin1',
     db : 'song',
     host : 'localhost',
     port: '8069',
@@ -26,25 +26,58 @@ var Emp = ds.createModel('crm.contact',{
 
 Emp.find(
     {
-        where:{
-            "or":[
-                {"id":"1"},
-                {"last_name":{"neq" :"test2"}},
-                {"last_name": "test3"},
-                {"and" :[{"first_name":"last"},{"title":"IT1"}]}
-            ]
-        },
+                // where:{
+                //     "and":[
+                //         {"id":"1"},
+                //         {"last_name":{"neq" :"test2"}},
+                //         {"last_name": "test3"},
+                //         {"or" :[
+                //             {"first_name":"last"},
+                //             {"title":"IT1"},
+                //             {"and":[
+                //                 {"id":"3"},
+                //                 {"last_name":{"neq" :"test3"}},
+                //                 {"last_name": "test1"}
+                //             ]}
+                //             ]}
+                //     ]
+                // },
         // where: {"id":"1"},
         // where: {id:{
         //     nin:[1,2]
         // }},
         // where:{
         //     "or":[
-        //         {"id":"1"},
-        //         {"last_name":"test1"}
+        //         {"id":"1"}
         //     ]
         // },
-        fields: {first_name:true,last_name:true,title:true},
+        where:{
+           "and":[
+                    {"id":"6"},
+                    {"last_name":{"neq" :"test3"}},
+                    {"or":[{"first_name":"last"},{"title":"IT1"}]}
+                ]
+        },
+        // where:{
+        //   "or":[
+        //       {"and":[
+        //           {"or":[
+        //               {a:5},
+        //               {b:6}
+        //           ]},
+        //           {c:7}
+        //       ]},
+        //       {"and":[
+        //           {d:1},
+        //           {e:2}
+        //       ]},
+        //       {"and":[
+        //           {f:3},
+        //           {g:4}
+        //       ]}
+        //   ]
+        // },
+        fields: {first_name:true,last_name:true,title:false},
         // fields: {title:false},
         limit:  1,
         order:  'last_name DESC',//['last_name DESC','first_name ASC']
