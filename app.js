@@ -43,21 +43,21 @@ var Emp = ds.createModel('crm.contact',{
 //                 //     ]
 //                 // },
 //         // where: {"id":"1"},
-//         // where: {id:{
-//         //     nin:[1,2]
-//         // }},
+//         where: {id:{
+//             nin:[1,2]
+//         }},
 //         // where:{
 //         //     "or":[
 //         //         {"id":"1"}
 //         //     ]
 //         // },
-//         where:{
-//            "and":[
-//                     {"id":"6"},
-//                     {"last_name":{"neq" :"test3"}},
-//                     {"or":[{"first_name":"last"},{"title":"IT1"}]}
-//                 ]
-//         },
+//         // where:{
+//         //    "and":[
+//         //             {"id":"6"},
+//         //             {"last_name":{"neq" :"test3"}},
+//         //             {"or":[{"first_name":"last"},{"title":"IT1"}]}
+//         //         ]
+//         // },
 //         // where:{
 //         //   "or":[
 //         //       {"and":[
@@ -89,6 +89,11 @@ var Emp = ds.createModel('crm.contact',{
 //      console.dir(emp);
 // });
 
+
+Emp.findById(31,function (err,emp) {
+    if (err) throw err;
+    console.dir(emp);
+});
         // Emp.create({
         //     first_name:'test2',
         //     last_name:'last',
@@ -120,16 +125,16 @@ var Emp = ds.createModel('crm.contact',{
     //         console.dir(response);
     //     }
     // )
-Emp.create({
-    first_name:'test2',
-    last_name:'last',
-    title:'sales'
-    },function (err,response) {
-    if(err) throw err;
-    console.dir(response);
-    console.dir(response.first_name);
-    response.save(function (err, res) {
-        if(err) throw err;
-        console.dir('save done')
-    })
-});
+// Emp.create({
+//     first_name:'test2',
+//     last_name:'last',
+//     title:'sales'
+//     },function (err,response) {
+//     if(err) throw err;
+//     console.dir(response);
+//     console.dir(response.first_name);
+//     response.save(function (err, res) {
+//         if(err) throw err;
+//         console.dir('save done')
+//     })
+// });
